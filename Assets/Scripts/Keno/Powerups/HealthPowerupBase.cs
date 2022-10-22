@@ -6,6 +6,6 @@ public class HealthPowerupBase : PowerupBase
 
 	public override void ApplyPowerup()
 	{
-		//Apply health effect
+		base.ApplyPowerup();
 	}
 }

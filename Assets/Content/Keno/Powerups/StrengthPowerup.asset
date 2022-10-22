@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2070d41720ce7384eac5d448d62dc653, type: 3}
   m_Name: StrengthPowerup
   m_EditorClassIdentifier: 
+  PowerupName: Strength
   Multiplier: 0
