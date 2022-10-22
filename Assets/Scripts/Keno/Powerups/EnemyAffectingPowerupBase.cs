@@ -6,7 +6,14 @@ public class EnemyAffectingPowerupBase : PowerupBase
 	public override void ApplyPowerup()
 	{
 		base.ApplyPowerup();
-		//Find all enemies in scene
-		//Freeze
+
+		Object[] enemies = FindObjectsOfType<EnemyBase>();
+		if (enemies.Length == 0)
+			return; 
+
+		foreach(Object o in enemies)
+		{
+			//Do stuff
+		}
 	}
 }

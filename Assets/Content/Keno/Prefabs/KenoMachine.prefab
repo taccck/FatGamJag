@@ -1054,9 +1054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallAmount: 50
   BallSpeed: 5
-  FakeBallPrefab: {fileID: 3687319273696675393, guid: 0d5356df6e8f8a24395bb8370dd1c510,
+  FakeBallPrefab: {fileID: 3687319273696675393, guid: bb28db6b78ad11e46bc0b074bb4314aa,
     type: 3}
-  BallPrefab: {fileID: 3687319273696675393, guid: bb28db6b78ad11e46bc0b074bb4314aa,
+  BallPrefab: {fileID: 3687319273696675393, guid: 0d5356df6e8f8a24395bb8370dd1c510,
     type: 3}
   BallSpawnPos: {fileID: 4153771987886344443}
 --- !u!1 &6900840894902166658

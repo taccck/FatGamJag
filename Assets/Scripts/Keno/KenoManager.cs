@@ -21,6 +21,8 @@ public class KenoManager : MonoBehaviour
 
 	private void PermanentKeno()
 	{
+		ActivePowerups = new List<PowerupBase>();
+
 		for (int i = 0; i < 5; i++)
 		{
 			int rand = Random.Range(0, LevelUpPowerups.Length);
@@ -29,11 +31,12 @@ public class KenoManager : MonoBehaviour
 		}
 
 		StartCoroutine(KenoMachine.Instance.OnKenoStart(ActivePowerups));
-		//StartAllTimers(); 
 	}
 
 	private void TemporaryKeno()
-	{	
+	{
+		ActivePowerups = new List<PowerupBase>(); 
+
 		for (int i = 0; i < 5; i++)
 		{
 			int rand = Random.Range(0, PickupPowerups.Length);
