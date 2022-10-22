@@ -6,7 +6,7 @@ public class VolvoController : MonoBehaviour
     [SerializeField] private float acceleration = 25f;
     [SerializeField] private float maxSpeed = 6.66f;
     [SerializeField] private float turnSpeed = 1f;
-    [SerializeField] private float driftTurnSpeed = 5f;
+    [SerializeField] private float driftTurnSpeed = 3f;
     private Rigidbody rb;
 
     private Vector2 moveDirection;
@@ -43,7 +43,7 @@ public class VolvoController : MonoBehaviour
                 rb.velocity -= rb.velocity.normalized * (deltaSpeed * reducePrecent);
             }
 
-            rb.velocity += carDirection * (Time.deltaTime * deltaSpeed);
+            rb.velocity += carDirection * deltaSpeed;
         }
     }
 
@@ -52,7 +52,7 @@ public class VolvoController : MonoBehaviour
         if (moving)
         {
             Vector3 angles = transform.rotation.eulerAngles;
-            float turnSpeedGraphed = Mathf.Sqrt(rb.velocity.magnitude * VolvoConfig.Get.currTurnSpeed);
+            float turnSpeedGraphed = Mathf.Sqrt(rb.velocity.magnitude * turnSpeed);
             float deltaYaw = drifting ? driftTurnSpeed + turnSpeedGraphed : turnSpeedGraphed;
             float distToTurn = targetYaw - angles.y;
             int turnDirection = (int)Mathf.Sign(distToTurn);
@@ -77,16 +77,15 @@ public class VolvoController : MonoBehaviour
     {
         VolvoConfig.Get.baseAcceleration = acceleration;
         VolvoConfig.Get.baseMaxSpeed = maxSpeed;
-        VolvoConfig.Get.baseTurnSpeed = turnSpeed;
 
         VolvoConfig.Get.currAcceleration = acceleration;
         VolvoConfig.Get.currMaxSpeed = maxSpeed;
-        VolvoConfig.Get.currTurnSpeed = turnSpeed;
 
     }
 
     private void Awake()
     {
+        VolvoConfig.Init();
         rb = GetComponent<Rigidbody>();
     }
 }

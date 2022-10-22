@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 3287099229986484235}
   - component: {fileID: 3287099229986484232}
   - component: {fileID: 3287099229986484230}
+  - component: {fileID: 7958368881337304411}
   - component: {fileID: 3287099229986484231}
   - component: {fileID: 3287099229986484237}
   - component: {fileID: 3287099229986484236}
@@ -450,6 +451,20 @@ MonoBehaviour:
   maxSpeed: 6.66
   turnSpeed: 1
   driftTurnSpeed: 5
+--- !u!114 &7958368881337304411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287099229986484228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de71b19433014a948937464c19e5894d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  health: 10
 --- !u!114 &3287099229986484231
 MonoBehaviour:
   m_ObjectHideFlags: 0
