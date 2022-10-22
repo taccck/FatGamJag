@@ -5,6 +5,8 @@ public class KenoManager : MonoBehaviour
 {
 	public static KenoManager Instance;
 
+	public GameObject PlayObj; 
+
 	public PowerupBase[] LevelUpPowerups;
 	public PowerupBase[] PickupPowerups;
 
@@ -74,6 +76,7 @@ public class KenoManager : MonoBehaviour
 	private void Start()
 	{
 		//OnKenoCalled(KenoType.Pickup); 
+		PlayObj = GameObject.Find("PlayObj"); 
 	}
 
 	public enum KenoType

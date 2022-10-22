@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using UnityEngine.SceneManagement; 
 using System.Collections.Generic;
 using System.Collections; 
 
@@ -26,10 +27,14 @@ public class KenoMachine : MonoBehaviour
 		foreach(PowerupBase powerup in powerups)
 		{
 			GameObject ball = Instantiate(BallPrefab, BallSpawnPos.position, Quaternion.identity);
+			ball.transform.SetParent(transform.Find("Balls")); 
 			ball.transform.Find("TextPivot").transform.Find("Text").GetComponent<TextMeshPro>().text = powerup.PowerupName; 
 			ball.transform.Find("TextPivot").transform.Find("Text").GetComponent<TextMeshPro>().color = powerup.TextColor; 
 			yield return new WaitForSeconds(1); 
 		}
+
+		KenoManager.Instance.PlayObj.SetActive(true);
+		SceneManager.UnloadSceneAsync("KenoScene"); 
 	}
 
 	private void Awake()
@@ -45,6 +50,7 @@ public class KenoMachine : MonoBehaviour
 		for (int i = 0; i < BallAmount; i++)
 		{
 			GameObject ball = Instantiate(FakeBallPrefab, transform.position, Quaternion.identity);
+			ball.transform.SetParent(transform.Find("Balls")); 
 			Balls.Add(ball);
 		}
 	}
