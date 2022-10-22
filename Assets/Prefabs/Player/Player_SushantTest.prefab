@@ -251,7 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3287099229263999366}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_SushantTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 3287099229986484231}
   - component: {fileID: 3287099229986484237}
   - component: {fileID: 3287099229986484236}
-  - component: {fileID: 4544586103121511036}
+  - component: {fileID: 7060933070490389536}
   m_Layer: 0
   m_Name: Volvo240
   m_TagString: Untagged
@@ -510,7 +510,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!96 &4544586103121511036
+--- !u!96 &7060933070490389536
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
