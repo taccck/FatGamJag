@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class VolvoFighting : MonoBehaviour
 {
-    [SerializeField] private float damage = 1f;
-    [SerializeField] private uint health = 10;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float health = 10;
 
     private Rigidbody rb;
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 
     float DealDamage()
     {

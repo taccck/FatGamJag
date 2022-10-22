@@ -10,14 +10,14 @@ public class VolvoConfig
     public float baseMaxSpeed;
 
     public float baseDamage;
-    public uint baseHealth;
+    public float baseHealth;
 
     //for temp powerup
     public float currAcceleration;
     public float currMaxSpeed;
 
     public float currDamage;
-    public uint currHealth;
+    public float currHealth;
 
     public static void Init()
     {
