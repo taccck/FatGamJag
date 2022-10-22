@@ -7,5 +7,6 @@ public class HealthPowerupBase : PowerupBase
 	public override void ApplyPowerup()
 	{
 		base.ApplyPowerup();
+		VolvoConfig.Get.currHealth += Increase; 
 	}
 }

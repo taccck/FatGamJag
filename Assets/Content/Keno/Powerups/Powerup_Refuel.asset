@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2070d41720ce7384eac5d448d62dc653, type: 3}
-  m_Name: StrengthPowerup
+  m_Script: {fileID: 11500000, guid: c7712d5226bb294438ed4221450e5d54, type: 3}
+  m_Name: Powerup_Refuel
   m_EditorClassIdentifier: 
-  PowerupName: Strength
+  PowerupName: Refuel
   Multiplier: 0
+  Rarity: 5
+  TextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}

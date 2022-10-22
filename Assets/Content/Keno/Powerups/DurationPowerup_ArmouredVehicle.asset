@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7712d5226bb294438ed4221450e5d54, type: 3}
-  m_Name: HealthPowerup
+  m_Script: {fileID: 11500000, guid: 77dac089bf297094a82fd270b97e6e3c, type: 3}
+  m_Name: DurationPowerup_ArmouredVehicle
   m_EditorClassIdentifier: 
-  PowerupName: Health
+  PowerupName: Armoured Vehicle
   Multiplier: 0
+  Rarity: 2
+  TextColor: {r: 0.54901963, g: 0.05490196, b: 0.54901963, a: 1}
+  DurationSeconds: 5
