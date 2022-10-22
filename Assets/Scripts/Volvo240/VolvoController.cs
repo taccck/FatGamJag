@@ -35,6 +35,7 @@ public class VolvoController : MonoBehaviour
         {
             float deltaSpeed = Time.deltaTime * VolvoConfig.Get.currAcceleration;
             Vector3 carDirection = transform.right;
+            //rb.velocity = carDirection * Vector3.Dot(rb.velocity, carDirection);
 
             if (rb.velocity.magnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
             {
@@ -57,12 +58,10 @@ public class VolvoController : MonoBehaviour
             float distToTurn = targetYaw - angles.y;
             int turnDirection = (int)Mathf.Sign(distToTurn);
             if(Mathf.Abs(distToTurn) > 180)
-            {
-                distToTurn = Mathf.Abs(distToTurn) - 180;
                 turnDirection *= -1;
-            }
-            float percentToTurn = Mathf.Abs(distToTurn) / 180f;
-            float newYaw = angles.y + turnDirection * deltaYaw * percentToTurn;
+
+            float newYaw = angles.y + turnDirection * deltaYaw * Time.deltaTime;
+            if (Mathf.Abs(angles.y - newYaw) > Mathf.Abs(angles.y - targetYaw)) newYaw = targetYaw;
             transform.rotation = Quaternion.Euler(angles.x, newYaw, angles.z);
         }
     }
@@ -81,6 +80,7 @@ public class VolvoController : MonoBehaviour
         VolvoConfig.Get.currAcceleration = acceleration;
         VolvoConfig.Get.currMaxSpeed = maxSpeed;
 
+        VolvoConfig.Get.SomePlayerComponent = this;
     }
 
     private void Awake()

@@ -38,6 +38,8 @@ public class VolvoFighting : MonoBehaviour
 
         VolvoConfig.Get.currDamage = damage;
         VolvoConfig.Get.currHealth = health;
+
+        VolvoConfig.Get.SomePlayerComponent = this;
     }
 
     private void Awake()
