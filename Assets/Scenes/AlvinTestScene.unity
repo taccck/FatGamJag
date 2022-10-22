@@ -1030,6 +1030,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1534917485}
+    - target: {fileID: 7176970079795409908, guid: 413bfa8bed590d141a6b2043fa408724,
+        type: 3}
+      propertyPath: spawnableEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 8189885855087165739, guid: 87791e3b58c3a7240988a1eb9357afe8,
+        type: 3}
     - target: {fileID: 7176970079795409915, guid: 413bfa8bed590d141a6b2043fa408724,
         type: 3}
       propertyPath: m_Name
