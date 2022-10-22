@@ -26,7 +26,12 @@ public class EnemyBase : MonoBehaviour
     private void moveTowardsPlayer()
     {
         Vector3 directionToPlayer = Player.transform.position - transform.position;
-        
-        body.AddForce(directionToPlayer * Speed, ForceMode.Force);
+
+        body.velocity = directionToPlayer.normalized * Speed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // ToDo: Attack or take damage
     }
 }
