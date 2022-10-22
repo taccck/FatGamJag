@@ -1,17 +1,27 @@
-using UnityEngine;
-
 public class VolvoConfig
 {
     private static VolvoConfig Curr;
-    //public static Vol
+    public static VolvoConfig Get { get; }
 
-    public float acceleration = 25f;
-    public float maxSpeed = 6.66f;
-    public float turnSpeed = 1f;
-    public float driftTurnSpeed = 5f;
+    //for perma powerup
+    public float baseAcceleration;
+    public float baseMaxSpeed;
+    public float baseTurnSpeed;
 
-    VolvoConfig()
+    public float baseDamage;
+    public uint baseHealth;
+
+    //for temp powerup
+    public float currAcceleration;
+    public float currMaxSpeed;
+    public float currTurnSpeed;
+
+    public float currDamage;
+    public uint currHealth;
+
+    public static void Init()
     {
-        
+        if (Curr == null)
+            Curr = new VolvoConfig();
     }
 }

@@ -33,17 +33,17 @@ public class VolvoController : MonoBehaviour
     {
         if (moving && !drifting)
         {
-            float deltaSpeed = Time.deltaTime * acceleration;
+            float deltaSpeed = Time.deltaTime * VolvoConfig.Get.currAcceleration;
             Vector3 carDirection = transform.right;
 
-            if (rb.velocity.magnitude >= maxSpeed * maxSpeed)
+            if (rb.velocity.magnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
             {
                 float newDirDiff = Vector3.Dot(rb.velocity.normalized, carDirection);
                 float reducePrecent = Mathf.Clamp01(1 + newDirDiff);
                 rb.velocity -= rb.velocity.normalized * (deltaSpeed * reducePrecent);
             }
 
-            rb.velocity += carDirection * (Time.deltaTime * acceleration);
+            rb.velocity += carDirection * (Time.deltaTime * deltaSpeed);
         }
     }
 
@@ -52,7 +52,7 @@ public class VolvoController : MonoBehaviour
         if (moving)
         {
             Vector3 angles = transform.rotation.eulerAngles;
-            float turnSpeedGraphed = Mathf.Sqrt(rb.velocity.magnitude * turnSpeed);
+            float turnSpeedGraphed = Mathf.Sqrt(rb.velocity.magnitude * VolvoConfig.Get.currTurnSpeed);
             float deltaYaw = drifting ? driftTurnSpeed + turnSpeedGraphed : turnSpeedGraphed;
             float distToTurn = targetYaw - angles.y;
             int turnDirection = (int)Mathf.Sign(distToTurn);
@@ -71,6 +71,18 @@ public class VolvoController : MonoBehaviour
     {
         Drive();
         Turn();
+    }
+
+    private void Start()
+    {
+        VolvoConfig.Get.baseAcceleration = acceleration;
+        VolvoConfig.Get.baseMaxSpeed = maxSpeed;
+        VolvoConfig.Get.baseTurnSpeed = turnSpeed;
+
+        VolvoConfig.Get.currAcceleration = acceleration;
+        VolvoConfig.Get.currMaxSpeed = maxSpeed;
+        VolvoConfig.Get.currTurnSpeed = turnSpeed;
+
     }
 
     private void Awake()
