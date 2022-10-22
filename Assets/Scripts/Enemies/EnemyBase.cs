@@ -47,6 +47,8 @@ public class EnemyBase : MonoBehaviour
     {
         Vector3 directionToPlayer = Player.transform.position - transform.position;
         directionToPlayer.y = 0;
+        
+        transform.rotation = Quaternion.LookRotation(directionToPlayer);
 
         _body.velocity = directionToPlayer.normalized * speed;
     }
