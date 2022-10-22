@@ -16,7 +16,7 @@ public class VolvoController : MonoBehaviour
     private bool moving;
     private float targetYaw;
 
-    private bool drifting;
+    private float drifting;
 
     private void OnMove(InputValue input)
     {
@@ -27,27 +27,25 @@ public class VolvoController : MonoBehaviour
             targetYaw = 360f - targetYaw;
     }
 
-    private void OnDrift(InputValue input)
-    {
-        drifting = input.isPressed;
-    }
-
     private void Drive()
     {
-        if (moving && !drifting)
+        if (moving)
         {
             float deltaSpeed = Time.deltaTime * VolvoConfig.Get.currAcceleration;
             Vector3 carDirection = transform.right;
-            //rb.velocity = carDirection * Vector3.Dot(rb.velocity, carDirection);
+            Vector3 driveVelocity = rb.velocity;
 
-            if (rb.velocity.sqrMagnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
+            //reduce speed to turn when at max speed
+            if (driveVelocity.sqrMagnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
             {
-                float newDirDiff = Vector3.Dot(rb.velocity.normalized, carDirection);
+                float newDirDiff = Vector3.Dot(driveVelocity.normalized, carDirection);
                 float reducePrecent = Mathf.Clamp01(1 + newDirDiff);
-                rb.velocity -= rb.velocity.normalized * (deltaSpeed * reducePrecent);
+                driveVelocity -= driveVelocity.normalized * (deltaSpeed * reducePrecent);
             }
 
-            rb.velocity += carDirection * deltaSpeed;
+            driveVelocity += carDirection * deltaSpeed;
+            drifting = Mathf.Abs(Vector3.Dot(driveVelocity.normalized, carDirection));
+            rb.velocity = driveVelocity;
         }
     }
 
@@ -57,13 +55,12 @@ public class VolvoController : MonoBehaviour
         {
             Vector3 angles = transform.rotation.eulerAngles;
             float turnSpeedGraphed = Mathf.Sqrt(rb.velocity.magnitude * turnSpeed);
-            float deltaYaw = drifting ? driftTurnSpeed + turnSpeedGraphed : turnSpeedGraphed;
             float distToTurn = targetYaw - angles.y;
             int turnDirection = (int)Mathf.Sign(distToTurn);
-            if(Mathf.Abs(distToTurn) > 180)
+            if (Mathf.Abs(distToTurn) > 180)
                 turnDirection *= -1;
 
-            float newYaw = angles.y + turnDirection * deltaYaw * Time.deltaTime;
+            float newYaw = angles.y + turnDirection * turnSpeedGraphed * Time.deltaTime;
             if (Mathf.Abs(angles.y - newYaw) > Mathf.Abs(angles.y - targetYaw)) newYaw = targetYaw;
             transform.rotation = Quaternion.Euler(angles.x, newYaw, angles.z);
         }
