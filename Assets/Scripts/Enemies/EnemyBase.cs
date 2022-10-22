@@ -6,10 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] private GameObject Player;
+    public GameObject Player;
     [SerializeField] private float Health = 10;
     [SerializeField] private float Attack = 1;
+    [SerializeField, Tooltip("Seconds between attacks")] private float attackCooldown = 0.5f;
     [SerializeField] private float Speed = 5;
+
+    private float attackCooldownTimer = 0;
 
     private Rigidbody body;
 
@@ -18,12 +21,22 @@ public class EnemyBase : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        moveTowardsPlayer();
+        CheckHealth();
+
+        if (attackCooldownTimer > 0)
+        {
+            attackCooldown -= Time.deltaTime;
+        }
     }
 
-    private void moveTowardsPlayer()
+    private void FixedUpdate()
+    {
+        MoveTowardsPlayer();
+    }
+
+    private void MoveTowardsPlayer()
     {
         Vector3 directionToPlayer = Player.transform.position - transform.position;
 
@@ -32,6 +45,18 @@ public class EnemyBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // ToDo: Attack or take damage
+        if (attackCooldownTimer <= 0)
+        {
+            Health--;
+            attackCooldownTimer = attackCooldown;
+        }
+    }
+
+    private void CheckHealth()
+    {
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
