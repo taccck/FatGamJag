@@ -22,7 +22,7 @@ public class VolvoFighting : MonoBehaviour
         return damage * speedModifier;
     }
 
-    void TakeDamage(float dealtDamage)
+    public void TakeDamage(float dealtDamage)
     {
         health -= dealtDamage;
         if(health <= 0)
@@ -38,6 +38,8 @@ public class VolvoFighting : MonoBehaviour
 
         VolvoConfig.Get.currDamage = damage;
         VolvoConfig.Get.currHealth = health;
+
+        VolvoConfig.Get.SomePlayerComponent = this;
     }
 
     private void Awake()

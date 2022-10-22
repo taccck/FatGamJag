@@ -448,9 +448,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 25
-  maxSpeed: 6.66
-  turnSpeed: 1
+  maxSpeed: 40
+  turnSpeed: 1337
   driftTurnSpeed: 5
+  velocityToTrailAt: 1
 --- !u!114 &7958368881337304411
 MonoBehaviour:
   m_ObjectHideFlags: 0

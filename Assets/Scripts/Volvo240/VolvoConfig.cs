@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 public class VolvoConfig
 {
@@ -18,6 +19,8 @@ public class VolvoConfig
 
     public float currDamage;
     public float currHealth;
+
+    public MonoBehaviour SomePlayerComponent;
 
     public static void Init()
     {

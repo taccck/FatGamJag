@@ -32,7 +32,6 @@ public class EnamySpawner : MonoBehaviour
             SpawnEnemies();
         }
         CheckEnemies();
-        print("Enemies: " + _spawnedEnemies.Count);
     }
 
     private void SpawnEnemies()

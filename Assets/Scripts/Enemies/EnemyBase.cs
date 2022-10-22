@@ -8,12 +8,15 @@ public class EnemyBase : MonoBehaviour
 {
     public GameObject Player;
     [SerializeField] private float health = 10;
-    [SerializeField] private float attack = 1;
+    [SerializeField] private float damage = 1;
     [SerializeField, Tooltip("Seconds between attacks")] private float attackCooldown = 0.5f;
     [SerializeField] private float speed = 5;
 
     private float _attackCooldownTimer;
     private bool _collidingWithPlayer;
+
+    private bool _dead;
+    private float _despawnTimer = 4;
 
     private Rigidbody _body;
 
@@ -24,8 +27,7 @@ public class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-        CheckHealth();
-        Attack();
+        Dead();
 
         if (_attackCooldownTimer > 0)
         {
@@ -35,12 +37,21 @@ public class EnemyBase : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_dead) return;
         MoveTowardsPlayer();
+        Attack();
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0 && !_dead)
+        {
+            _dead = true;
+            //GetComponent<CapsuleCollider>().enabled = false;
+            _body.mass = 0;
+            _body.freezeRotation = false;
+        }
     }
 
     private void MoveTowardsPlayer()
@@ -68,23 +79,20 @@ public class EnemyBase : MonoBehaviour
             _collidingWithPlayer = false;
         }
     }
-
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            print("Dead");
-            Destroy(gameObject);
-        }
-    }
-
     private void Attack()
     {
         if (!_collidingWithPlayer) return;
         if (_attackCooldownTimer <= 0)
         {
-            health--;
+            Player.GetComponent<VolvoFighting>().TakeDamage(damage);
             _attackCooldownTimer = attackCooldown;
         }
+    }
+
+    private void Dead()
+    {
+        if (!_dead) return;
+        if(_despawnTimer < 0) Destroy(gameObject);
+        _despawnTimer -= Time.deltaTime;
     }
 }
