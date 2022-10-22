@@ -64,6 +64,7 @@ public class EnamySpawner : MonoBehaviour
             if (Vector3.Magnitude(_spawnedEnemies[i].transform.position - player.transform.position) > 100)
             {
                 _spawnedEnemies.RemoveAt(i);
+                _spawnTimer = 0;
             }
         }
     }
