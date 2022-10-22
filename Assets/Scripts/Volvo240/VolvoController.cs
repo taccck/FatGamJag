@@ -4,10 +4,13 @@ using UnityEngine.InputSystem;
 public class VolvoController : MonoBehaviour
 {
     [SerializeField] private float acceleration = 25f;
-    [SerializeField] private float maxSpeed = 6.66f;
+    [SerializeField] private float maxSpeed = 40f;
     [SerializeField] private float turnSpeed = 1f;
     [SerializeField] private float driftTurnSpeed = 3f;
+
+    [SerializeField] private float velocityToTrailAt = 1f;
     private Rigidbody rb;
+    private TrailRenderer trail;
 
     private Vector2 moveDirection;
     private bool moving;
@@ -37,7 +40,7 @@ public class VolvoController : MonoBehaviour
             Vector3 carDirection = transform.right;
             //rb.velocity = carDirection * Vector3.Dot(rb.velocity, carDirection);
 
-            if (rb.velocity.magnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
+            if (rb.velocity.sqrMagnitude >= VolvoConfig.Get.currMaxSpeed * VolvoConfig.Get.currMaxSpeed)
             {
                 float newDirDiff = Vector3.Dot(rb.velocity.normalized, carDirection);
                 float reducePrecent = Mathf.Clamp01(1 + newDirDiff);
@@ -66,10 +69,18 @@ public class VolvoController : MonoBehaviour
         }
     }
 
+    private void UpdateVFX()
+    {
+        float playerSpeed = rb.velocity.magnitude;
+        print(playerSpeed);
+        trail.enabled = playerSpeed > velocityToTrailAt;
+    }
+
     private void Update()
     {
         Drive();
         Turn();
+        UpdateVFX();
     }
 
     private void Start()
@@ -87,5 +98,6 @@ public class VolvoController : MonoBehaviour
     {
         VolvoConfig.Init();
         rb = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
     }
 }

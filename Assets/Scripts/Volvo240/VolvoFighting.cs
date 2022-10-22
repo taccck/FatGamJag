@@ -22,7 +22,7 @@ public class VolvoFighting : MonoBehaviour
         return damage * speedModifier;
     }
 
-    void TakeDamage(float dealtDamage)
+    public void TakeDamage(float dealtDamage)
     {
         health -= dealtDamage;
         if(health <= 0)
