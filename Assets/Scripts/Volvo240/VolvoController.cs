@@ -11,6 +11,8 @@ public class VolvoController : MonoBehaviour
     private bool moving;
     private float targetYaw;
 
+    private bool drifting;
+
     private void OnMove(InputValue input)
     {
         moveDirection = input.Get<Vector2>();
@@ -20,9 +22,14 @@ public class VolvoController : MonoBehaviour
             targetYaw = 360f - targetYaw;
     }
 
-    private void Drive()
+    private void OnDrift(InputValue input)
     {
-        if (moving)
+        drifting = input.isPressed;
+    }
+
+    private void Drive()
+    {        
+        if (moving && !drifting)
         {
             float deltaSpeed = Time.deltaTime * acceleration;
             Vector3 moveDirection3d = new(moveDirection.x, 0, moveDirection.y);
@@ -35,13 +42,20 @@ public class VolvoController : MonoBehaviour
             }
 
             rb.velocity += moveDirection3d * (Time.deltaTime * acceleration);
+        }
+    }
 
+    private void Turn()
+    {
+        if (moving)
+        {
             transform.rotation = Quaternion.Euler(0, targetYaw, 0);
         }
     }
 
     private void Update()
     {
+        Turn();
         Drive();
     }
 
