@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Health: 10
-  Attack: 1
-  Speed: 10
+  health: 10
+  attack: 1
+  attackCooldown: 0.5
+  speed: 20
 --- !u!1 &8189885856834247975
 GameObject:
   m_ObjectHideFlags: 0

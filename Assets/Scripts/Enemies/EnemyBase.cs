@@ -7,27 +7,29 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public GameObject Player;
-    [SerializeField] private float Health = 10;
-    [SerializeField] private float Attack = 1;
+    [SerializeField] private float health = 10;
+    [SerializeField] private float attack = 1;
     [SerializeField, Tooltip("Seconds between attacks")] private float attackCooldown = 0.5f;
-    [SerializeField] private float Speed = 5;
+    [SerializeField] private float speed = 5;
 
-    private float attackCooldownTimer = 0;
+    private float _attackCooldownTimer;
+    private bool _collidingWithPlayer;
 
-    private Rigidbody body;
+    private Rigidbody _body;
 
     private void Start()
     {
-        body = GetComponent<Rigidbody>();
+        _body = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         CheckHealth();
+        Attack();
 
-        if (attackCooldownTimer > 0)
+        if (_attackCooldownTimer > 0)
         {
-            attackCooldown -= Time.deltaTime;
+            _attackCooldownTimer -= Time.deltaTime;
         }
     }
 
@@ -36,27 +38,50 @@ public class EnemyBase : MonoBehaviour
         MoveTowardsPlayer();
     }
 
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
     private void MoveTowardsPlayer()
     {
         Vector3 directionToPlayer = Player.transform.position - transform.position;
 
-        body.velocity = directionToPlayer.normalized * Speed;
+        _body.velocity = directionToPlayer.normalized * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (attackCooldownTimer <= 0)
+        if (collision.gameObject == Player)
         {
-            Health--;
-            attackCooldownTimer = attackCooldown;
+            _collidingWithPlayer = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject == Player)
+        {
+            _collidingWithPlayer = false;
         }
     }
 
     private void CheckHealth()
     {
-        if (Health <= 0)
+        if (health <= 0)
         {
+            print("Dead");
             Destroy(gameObject);
+        }
+    }
+
+    private void Attack()
+    {
+        if (!_collidingWithPlayer) return;
+        if (_attackCooldownTimer <= 0)
+        {
+            health--;
+            _attackCooldownTimer = attackCooldown;
         }
     }
 }
