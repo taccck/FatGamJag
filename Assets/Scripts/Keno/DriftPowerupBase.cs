@@ -5,6 +5,6 @@ public class DriftPowerupBase : PowerupBase
 {
 	public override void ApplyPowerup()
 	{
-		//Apply Drift powerup
+		base.ApplyPowerup();
 	}
 }

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bc8ef18b5555141a71d0666bdaadfb, type: 3}
   m_Name: DriftPowerup
   m_EditorClassIdentifier: 
+  PowerupName: Drift
   Multiplier: 0

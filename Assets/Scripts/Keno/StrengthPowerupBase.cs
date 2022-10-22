@@ -5,6 +5,6 @@ public class StrengthPowerupBase : PowerupBase
 {
 	public override void ApplyPowerup()
 	{
-		//Apply strength
+		base.ApplyPowerup(); 
 	}
 }
