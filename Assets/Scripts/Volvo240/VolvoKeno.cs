@@ -13,7 +13,7 @@ public class VolvoKeno : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("KenoScene", LoadSceneMode.Additive);
-        GameObject.Find("PlayObj").SetActive(false);
+        KenoManager.Instance.PlayObj.SetActive(false); 
         yield return new WaitForSeconds(1f);
         KenoManager.Instance.OnKenoCalled(KenoManager.KenoType.Pickup);
     }
