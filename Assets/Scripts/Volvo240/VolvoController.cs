@@ -34,16 +34,16 @@ public class VolvoController : MonoBehaviour
         if (moving && !drifting)
         {
             float deltaSpeed = Time.deltaTime * acceleration;
-            Vector3 moveDirection3d = new(moveDirection.x, 0, moveDirection.y);
+            Vector3 carDirection = transform.right;
 
             if (rb.velocity.magnitude >= maxSpeed * maxSpeed)
             {
-                float newDirDiff = Vector3.Dot(rb.velocity.normalized, moveDirection3d);
+                float newDirDiff = Vector3.Dot(rb.velocity.normalized, carDirection);
                 float reducePrecent = Mathf.Clamp01(1 + newDirDiff);
                 rb.velocity -= rb.velocity.normalized * (deltaSpeed * reducePrecent);
             }
 
-            rb.velocity += moveDirection3d * (Time.deltaTime * acceleration);
+            rb.velocity += carDirection * (Time.deltaTime * acceleration);
         }
     }
 
