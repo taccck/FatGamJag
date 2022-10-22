@@ -8,13 +8,27 @@ public class VolvoFighting : MonoBehaviour
     private Rigidbody rb;
     private void OnCollisionEnter(Collision collision)
     {
-        
+        //check tag or sumthing
+
+        if(collision.gameObject.TryGetComponent(out EnemyBase enemy))
+        {
+            enemy.TakeDamage(DealDamage());
+        }
     }
 
     float DealDamage()
     {
         float speedModifier = rb.velocity.magnitude / VolvoConfig.Get.baseMaxSpeed;
         return damage * speedModifier;
+    }
+
+    void TakeDamage(float dealtDamage)
+    {
+        health -= dealtDamage;
+        if(health <= 0)
+        {
+            print("is ded");
+        }
     }
 
     private void Start()
