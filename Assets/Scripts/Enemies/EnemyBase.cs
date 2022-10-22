@@ -51,7 +51,7 @@ public class EnemyBase : MonoBehaviour
         if (health <= 0 && !_dead)
         {
             _dead = true;
-            //GetComponent<CapsuleCollider>().enabled = false;
+            GetComponentInChildren<SetRagdoll>().SetState(true);
             _body.mass = 0;
             _body.freezeRotation = false;
         }
@@ -97,7 +97,6 @@ public class EnemyBase : MonoBehaviour
     {
         if (!_dead) return;
         if(_despawnTimer < 0) Destroy(gameObject);
-        blood.Play();
         _despawnTimer -= Time.deltaTime;
     }
 }
