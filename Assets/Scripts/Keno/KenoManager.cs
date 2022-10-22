@@ -1,28 +1,60 @@
 using UnityEngine;
-using UnityEngine.UI; //TEMP
 using System.Collections.Generic;
 
 public class KenoManager : MonoBehaviour
 {
 	public static KenoManager Instance;
 
-	public PowerupBase[] AllPowerups;
+	public PowerupBase[] LevelUpPowerups;
+	public PowerupBase[] PickupPowerups;
 
-	[SerializeField]
-	private GameObject[] TempImgs;
-	
-	public void OnKenoCalled()
+	private List<PowerupBase> ActivePowerups = new List<PowerupBase>(); 
+
+	public void OnKenoCalled(KenoType type)
 	{
-		List<string> powerupNames = new List<string>(); 
+		switch (type)
+		{
+			case KenoType.LevelUp: PermanentKeno(); break;
+			case KenoType.Pickup: TemporaryKeno(); break; 
+		}	
+	}
+
+	private void PermanentKeno()
+	{
 		for (int i = 0; i < 5; i++)
 		{
-			int rand = Random.Range(0, AllPowerups.Length);
-			string pName = AllPowerups[rand].PowerupName;
-			powerupNames.Add(pName); 
-			AllPowerups[rand].ApplyPowerup(); 
+			int rand = Random.Range(0, LevelUpPowerups.Length);
+			ActivePowerups.Add(LevelUpPowerups[rand]);
+			LevelUpPowerups[rand].ApplyPowerup();
 		}
 
-		StartCoroutine(KenoMachine.Instance.OnKenoStart(powerupNames)); 
+		StartCoroutine(KenoMachine.Instance.OnKenoStart(ActivePowerups));
+		//StartAllTimers(); 
+	}
+
+	private void TemporaryKeno()
+	{	
+		for (int i = 0; i < 5; i++)
+		{
+			int rand = Random.Range(0, PickupPowerups.Length);
+			ActivePowerups.Add(PickupPowerups[rand]); //Temp change
+			PickupPowerups[rand].ApplyPowerup(); //Temp change - Change back to rand
+		}
+
+		StartCoroutine(KenoMachine.Instance.OnKenoStart(ActivePowerups));
+		//StartAllTimers(); 
+	}
+
+	private void StartAllTimers()
+	{
+		foreach(PowerupBase pb in ActivePowerups)
+		{
+			if(pb as DurationPowerupBase)
+			{
+				DurationPowerupBase dpb = pb as DurationPowerupBase;
+				dpb.StartTimer(); 
+			}
+		}
 	}
 
 	private void Awake()
@@ -35,6 +67,11 @@ public class KenoManager : MonoBehaviour
 
 	private void Start()
 	{
-		OnKenoCalled(); 
+		OnKenoCalled(KenoType.Pickup); 
+	}
+
+	public enum KenoType
+	{
+		LevelUp, Pickup
 	}
 }
