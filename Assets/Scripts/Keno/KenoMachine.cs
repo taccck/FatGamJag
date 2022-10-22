@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro; 
 using System.Collections.Generic;
 using System.Collections; 
@@ -22,12 +21,13 @@ public class KenoMachine : MonoBehaviour
 
 	private List<GameObject> Balls = new List<GameObject>();
 
-	public IEnumerator OnKenoStart(List<string> names)
+	public IEnumerator OnKenoStart(List<PowerupBase> powerups)
 	{
-		foreach(string n in names)
+		foreach(PowerupBase powerup in powerups)
 		{
 			GameObject ball = Instantiate(BallPrefab, BallSpawnPos.position, Quaternion.identity);
-			ball.transform.Find("TextPivot").transform.Find("Text").GetComponent<TextMeshPro>().text = n; 
+			ball.transform.Find("TextPivot").transform.Find("Text").GetComponent<TextMeshPro>().text = powerup.PowerupName; 
+			ball.transform.Find("TextPivot").transform.Find("Text").GetComponent<TextMeshPro>().color = powerup.TextColor; 
 			yield return new WaitForSeconds(1); 
 		}
 	}
