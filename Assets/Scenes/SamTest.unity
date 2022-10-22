@@ -403,10 +403,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3287099229986484230, guid: 4eac31e618b13704f8621158a4ae444b,
-        type: 3}
-      propertyPath: turnSpeed
-      value: 1337
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac31e618b13704f8621158a4ae444b, type: 3}
