@@ -65,12 +65,15 @@ public class KenoManager : MonoBehaviour
 		if (Instance != null && Instance != this)
 			Destroy(this);
 		else
+		{
 			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
 	}
 
 	private void Start()
 	{
-		OnKenoCalled(KenoType.Pickup); 
+		//OnKenoCalled(KenoType.Pickup); 
 	}
 
 	public enum KenoType

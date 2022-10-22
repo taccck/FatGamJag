@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBase : MonoBehaviour
@@ -11,6 +12,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private float damage = 1;
     [SerializeField, Tooltip("Seconds between attacks")] private float attackCooldown = 0.5f;
     [SerializeField] private float speed = 5;
+    [SerializeField] private VisualEffect blood;
 
     private float _attackCooldownTimer;
     private bool _collidingWithPlayer;
@@ -23,6 +25,7 @@ public class EnemyBase : MonoBehaviour
     private void Start()
     {
         _body = GetComponent<Rigidbody>();
+        blood.Stop();
     }
 
     private void Update()
@@ -68,6 +71,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject == Player)
         {
+            blood.Play();
             _collidingWithPlayer = true;
         }
     }
@@ -93,6 +97,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (!_dead) return;
         if(_despawnTimer < 0) Destroy(gameObject);
+        blood.Play();
         _despawnTimer -= Time.deltaTime;
     }
 }
