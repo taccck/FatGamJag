@@ -46,6 +46,7 @@ public class EnemyBase : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         Vector3 directionToPlayer = Player.transform.position - transform.position;
+        directionToPlayer.y = 0;
 
         _body.velocity = directionToPlayer.normalized * speed;
     }

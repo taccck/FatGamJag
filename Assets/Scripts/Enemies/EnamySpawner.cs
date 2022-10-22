@@ -10,6 +10,7 @@ public class EnamySpawner : MonoBehaviour
     [SerializeField] private EnemyBase[] spawnableEnemies;
     [SerializeField] private GameObject player;
     [SerializeField] private int amountOfEnemiesToSpawn = 5;
+    [SerializeField] private int maxAmountOfEnemies = 20;
     [SerializeField] private float spawnCooldown = 5f;
 
     private List<EnemyBase> _spawnedEnemies = new List<EnemyBase>();
@@ -29,7 +30,6 @@ public class EnamySpawner : MonoBehaviour
         if (_spawnTimer <= 0)
         {
             SpawnEnemies();
-            _spawnTimer = spawnCooldown;
         }
         CheckEnemies();
         print("Enemies: " + _spawnedEnemies.Count);
@@ -39,6 +39,9 @@ public class EnamySpawner : MonoBehaviour
     {
         for (int i = 0; i < amountOfEnemiesToSpawn; i++)
         {
+            if (_spawnedEnemies.Count >= maxAmountOfEnemies) 
+                return;
+            
             Vector3 positionOutsideOfCamera = _camera.PlaceOutsideFrustum(_myBounds, 50);
             positionOutsideOfCamera.y = player.transform.position.y;
             EnemyBase currEnemey = Instantiate(spawnableEnemies[Random.Range(0, spawnableEnemies.Length - 1)],
@@ -46,6 +49,7 @@ public class EnamySpawner : MonoBehaviour
             currEnemey.Player = player;
             _spawnedEnemies.Add(currEnemey);
         }
+        _spawnTimer = spawnCooldown;
     }
 
     private void CheckEnemies()
@@ -53,6 +57,11 @@ public class EnamySpawner : MonoBehaviour
         for (int i = _spawnedEnemies.Count - 1; i >= 0; i--)
         {
             if (!_spawnedEnemies[i])
+            {
+                _spawnedEnemies.RemoveAt(i);
+            }
+
+            if (Vector3.Magnitude(_spawnedEnemies[i].transform.position - player.transform.position) > 100)
             {
                 _spawnedEnemies.RemoveAt(i);
             }
