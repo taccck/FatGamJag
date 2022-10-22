@@ -50,7 +50,7 @@ public class KenoManager : MonoBehaviour
 		//StartAllTimers(); 
 	}
 
-	private void StartAllTimers()
+	public void StartAllTimers()
 	{
 		foreach(PowerupBase pb in ActivePowerups)
 		{

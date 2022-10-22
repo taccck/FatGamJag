@@ -34,7 +34,8 @@ public class KenoMachine : MonoBehaviour
 		}
 
 		KenoManager.Instance.PlayObj.SetActive(true);
-		SceneManager.UnloadSceneAsync("KenoScene"); 
+		SceneManager.UnloadSceneAsync("KenoScene");
+		KenoManager.Instance.StartAllTimers(); 
 	}
 
 	private void Awake()
