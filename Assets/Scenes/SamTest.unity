@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b0254696f165d4d89bc2d1f81585e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayObj: {fileID: 0}
   LevelUpPowerups:
   - {fileID: 11400000, guid: 3f5b37cb352525144bed6613a66fcff2, type: 2}
   PickupPowerups:

@@ -9,6 +9,7 @@ public class VolvoController : MonoBehaviour
     [SerializeField] private float driftTurnSpeed = 3f;
 
     [SerializeField] private float velocityToTrailAt = 1f;
+    [SerializeField] private ParticleSystem[] driftEffect;
     private Rigidbody rb;
     private TrailRenderer trail;
 
@@ -44,7 +45,7 @@ public class VolvoController : MonoBehaviour
             }
 
             driveVelocity += carDirection * deltaSpeed;
-            drifting = Mathf.Abs(Vector3.Dot(driveVelocity.normalized, carDirection));
+            drifting = 1f - Mathf.Abs(Vector3.Dot(driveVelocity.normalized, carDirection));
             rb.velocity = driveVelocity;
         }
     }
@@ -69,8 +70,16 @@ public class VolvoController : MonoBehaviour
     private void UpdateVFX()
     {
         float playerSpeed = rb.velocity.magnitude;
-        print(playerSpeed);
+        //print(playerSpeed);
         trail.enabled = playerSpeed > velocityToTrailAt;
+        foreach(ParticleSystem ps in driftEffect)
+        {
+            var main = ps.main;
+            Color newAlpha = main.startColor.color;
+            newAlpha.a = drifting;
+            main.startColor = newAlpha;
+            print(ps.main.startColor.color.a);
+        }
     }
 
     private void Update()
