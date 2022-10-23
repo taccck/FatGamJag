@@ -64,19 +64,13 @@ public class KenoManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if (Instance != null && Instance != this)
-			Destroy(this);
-		else
-		{
-			Instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
+		Instance = this;
 	}
 
 	private void Start()
 	{
 		//OnKenoCalled(KenoType.Pickup); 
-		PlayObj = GameObject.Find("PlayObj"); 
+		//PlayObj = GameObject.Find("PlayObj"); 
 	}
 
 	public enum KenoType
