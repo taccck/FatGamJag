@@ -63,7 +63,7 @@ public class VolvoController : MonoBehaviour
 
             float newYaw = angles.y + turnDirection * turnSpeedGraphed * Time.deltaTime;
             if (Mathf.Abs(angles.y - newYaw) > Mathf.Abs(angles.y - targetYaw)) newYaw = targetYaw;
-            transform.rotation = Quaternion.Euler(angles.x, newYaw, angles.z);
+            transform.rotation = Quaternion.AngleAxis(newYaw, transform.up);
         }
     }
 
