@@ -53,6 +53,8 @@ public class EnemyBase : MonoBehaviour
         health -= damage;
         if (health <= 0 && !_dead)
         {
+            blood.Play();
+            blood.Play();
             audio.pitch += Random.Range(-0.3f, 0.3f);
             audio.volume = 0.5f;
             audio.Play();
