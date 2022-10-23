@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VolvoFighting : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
     [SerializeField] private float health = 10;
+
+    public float GetHealth { get { return health; } }
 
     private Rigidbody rb;
     private void OnCollisionEnter(Collision collision)
@@ -33,7 +36,7 @@ public class VolvoFighting : MonoBehaviour
         print("Damage: " + modifiedDamage);
         if(health <= 0)
         {
-            print("is ded");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
