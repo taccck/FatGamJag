@@ -22,6 +22,7 @@ public class EnamySpawner : MonoBehaviour
     
     void Start()
     {
+        _spawnedEnemies = new List<EnemyBase>();
         _myBounds = GetComponent<Renderer>().bounds;
         _camera = Camera.main;
     }
@@ -69,8 +70,7 @@ public class EnamySpawner : MonoBehaviour
                 _spawnedEnemies.RemoveAt(i);
                 changedList = true;
             }
-
-            if (Vector3.Magnitude(_spawnedEnemies[i].transform.position - player.transform.position) > 100)
+            else if (Vector3.Magnitude(_spawnedEnemies[i].transform.position - player.transform.position) > 100)
             {
                 Destroy(_spawnedEnemies[i].gameObject);
                 _spawnedEnemies.RemoveAt(i);
