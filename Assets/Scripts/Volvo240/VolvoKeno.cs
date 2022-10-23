@@ -6,10 +6,10 @@ public class VolvoKeno : MonoBehaviour
 {
     private void Start()
     {
-        KenoManager.Instance.StartCoroutine(StartKeno());
+        //KenoManager.Instance.StartCoroutine(StartKeno());
     }
 
-    IEnumerator StartKeno()
+    public IEnumerator StartKeno()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("KenoScene", LoadSceneMode.Additive);

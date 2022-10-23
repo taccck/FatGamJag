@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Powerup_Refuel
   m_EditorClassIdentifier: 
   PowerupName: Refuel
-  Multiplier: 0
+  Increase: 10
   Rarity: 5
   TextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}

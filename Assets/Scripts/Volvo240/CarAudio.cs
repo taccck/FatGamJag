@@ -36,7 +36,6 @@ public class CarAudio : MonoBehaviour
 	{
 		if (Car)
 			CurrentSpeed = Car.GetComponent<Rigidbody>().velocity.magnitude;
-		print("Speed: " + CurrentSpeed);
 		
 		if (Keyboard.current.wKey.isPressed || Keyboard.current.sKey.isPressed || Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed) //Accelerating
 		{
