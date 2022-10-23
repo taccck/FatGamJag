@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 3287099229986484237, guid: 4eac31e618b13704f8621158a4ae444b,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eac31e618b13704f8621158a4ae444b, type: 3}
 --- !u!1 &432995556
@@ -1030,6 +1035,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1534917485}
+    - target: {fileID: 7176970079795409908, guid: 413bfa8bed590d141a6b2043fa408724,
+        type: 3}
+      propertyPath: maxAmountOfEnemies
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7176970079795409908, guid: 413bfa8bed590d141a6b2043fa408724,
         type: 3}
       propertyPath: spawnableEnemies.Array.size
