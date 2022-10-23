@@ -110,6 +110,7 @@ public class EnemyBase : MonoBehaviour
 	{
 		if (!_dead) return;
 		if (_despawnTimer < 0) Destroy(gameObject);
+		if (Random.Range(1, 100) < 3) blood.Play();
 		_despawnTimer -= Time.deltaTime;
 	}
 }
