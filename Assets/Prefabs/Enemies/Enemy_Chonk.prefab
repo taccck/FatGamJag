@@ -469,11 +469,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -1127,11 +1127,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -1788,11 +1788,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -1931,11 +1931,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -2105,11 +2105,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -2460,11 +2460,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -2873,11 +2873,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -2984,11 +2984,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   health: 30
-  damage: 2
+  damage: 4
   attackCooldown: 1
   speed: 5
   blood: {fileID: 2306346600461752013}
@@ -3458,11 +3458,11 @@ CharacterJoint:
     damper: 0
   m_Swing1Limit:
     limit: 3
-    bounciness: 0.1
+    bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
     limit: 177
-    bounciness: 0.12
+    bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
   m_ProjectionDistance: 0.1
