@@ -20,7 +20,7 @@ public class EnemyBase : MonoBehaviour
 	private float _attackCooldownTimer;
 	private bool _collidingWithPlayer;
 
-	private bool _dead;
+	public bool dead;
 	private float _despawnTimer = 4;
 
 	private Rigidbody _body;
@@ -45,7 +45,7 @@ public class EnemyBase : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (_dead) return;
+		if (dead) return;
 
 		if (!Frozen)
 			MoveTowardsPlayer();
@@ -56,12 +56,12 @@ public class EnemyBase : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 		health -= damage;
-		if (health <= 0 && !_dead)
+		if (health <= 0 && !dead)
 		{
 			audio.pitch += Random.Range(-0.3f, 0.3f);
 			audio.volume = 0.1f;
 			audio.Play();
-			_dead = true;
+			dead = true;
 			GetComponentInChildren<SetRagdoll>().SetState(true);
 			_body.mass = 0;
 			_body.freezeRotation = false;
@@ -106,7 +106,7 @@ public class EnemyBase : MonoBehaviour
 
 	private void Dead()
 	{
-		if (!_dead) return;
+		if (!dead) return;
 		if (_despawnTimer < 0) Destroy(gameObject);
 		if (Random.Range(1, 100) < 3) blood.Play();
 		_despawnTimer -= Time.deltaTime;
