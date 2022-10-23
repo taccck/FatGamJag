@@ -1272,6 +1272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6331652203155141501, guid: b259f5e9c26417a4490a9d1c9461f346,
+        type: 3}
+      propertyPath: volvoContrl
+      value: 
+      objectReference: {fileID: 3287099229986484230}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b259f5e9c26417a4490a9d1c9461f346, type: 3}
 --- !u!224 &8178211622475881532 stripped

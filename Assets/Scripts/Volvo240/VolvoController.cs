@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class VolvoController : MonoBehaviour
@@ -13,6 +15,8 @@ public class VolvoController : MonoBehaviour
     private Rigidbody rb;
     private TrailRenderer trail;
 
+    public static event Action OnReceivePause;
+
     private Vector2 moveDirection;
     private bool moving;
     private float targetYaw;
@@ -26,6 +30,11 @@ public class VolvoController : MonoBehaviour
         targetYaw = Mathf.Acos(moveDirection.x) * Mathf.Rad2Deg;
         if (moveDirection.y > 0)
             targetYaw = 360f - targetYaw;
+    }
+
+    private void OnPause()
+    {
+        OnReceivePause.Invoke();
     }
 
     private void Drive()
@@ -64,6 +73,7 @@ public class VolvoController : MonoBehaviour
             float newYaw = angles.y + turnDirection * turnSpeedGraphed * Time.deltaTime;
             if (Mathf.Abs(angles.y - newYaw) > Mathf.Abs(angles.y - targetYaw)) newYaw = targetYaw;
             transform.rotation = Quaternion.AngleAxis(newYaw, transform.up);
+            //transform.rotation = Quaternion.Euler(angles.x, newYaw, angles.z);
         }
     }
 
