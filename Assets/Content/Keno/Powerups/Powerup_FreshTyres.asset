@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Powerup_FreshTyres
   m_EditorClassIdentifier: 
   PowerupName: Fresh Tyres
-  Multiplier: 0
+  Increase: 5
   Rarity: 3
   TextColor: {r: 0, g: 0.15852642, b: 1, a: 1}

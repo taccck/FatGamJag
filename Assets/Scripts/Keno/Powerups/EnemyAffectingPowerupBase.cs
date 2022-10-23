@@ -14,6 +14,8 @@ public class EnemyAffectingPowerupBase : PowerupBase
 		foreach(Object o in enemies)
 		{
 			//Do stuff
+			EnemyBase enemy = o as EnemyBase;
+			enemy.Frozen = true; 
 		}
 	}
 }
