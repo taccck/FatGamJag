@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KenoScene.unity
     guid: 26a13c93e4fdf2846a5424d10b6c4394
+  - enabled: 1
+    path: Assets/Scenes/AlvinTestScene.unity
+    guid: 62668134319eb934ba283234e6d1bd7d
   m_configObjects: {}
