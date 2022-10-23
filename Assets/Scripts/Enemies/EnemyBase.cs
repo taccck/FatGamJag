@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBase : MonoBehaviour
@@ -21,10 +22,12 @@ public class EnemyBase : MonoBehaviour
     private float _despawnTimer = 4;
 
     private Rigidbody _body;
+    private AudioSource audio;
 
     private void Start()
     {
         _body = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
         blood.Stop();
     }
 
@@ -50,6 +53,9 @@ public class EnemyBase : MonoBehaviour
         health -= damage;
         if (health <= 0 && !_dead)
         {
+            audio.pitch += Random.Range(-0.3f, 0.3f);
+            audio.volume = 0.5f;
+            audio.Play();
             _dead = true;
             GetComponentInChildren<SetRagdoll>().SetState(true);
             _body.mass = 0;
