@@ -43,7 +43,7 @@ public class EnamySpawner : MonoBehaviour
             
             Vector3 positionOutsideOfCamera = _camera.PlaceOutsideFrustum(_myBounds, 50);
             positionOutsideOfCamera.y = player.transform.position.y;
-            EnemyBase currEnemey = Instantiate(spawnableEnemies[Random.Range(0, spawnableEnemies.Length - 1)],
+            EnemyBase currEnemey = Instantiate(spawnableEnemies[Random.Range(0, spawnableEnemies.Length)],
                 positionOutsideOfCamera, quaternion.identity, transform);
             currEnemey.Player = player;
             _spawnedEnemies.Add(currEnemey);

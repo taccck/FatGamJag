@@ -26,6 +26,7 @@ public class VolvoFighting : MonoBehaviour
     {
         // 1f is from frustration, find good value tomorrow. - Alvin, 1:45
         float modifiedDamage = dealtDamage - (dealtDamage * (rb.velocity.magnitude / (VolvoConfig.Get.baseMaxSpeed * 1f)));
+        
         // Done here instead directly after "health -=" because of debug, feel free to change
         modifiedDamage = modifiedDamage > 0 ? modifiedDamage : 0;
         health -= modifiedDamage;

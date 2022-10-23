@@ -3110,7 +3110,7 @@ GameObject:
   - component: {fileID: 8189885855087165738}
   - component: {fileID: 8189885855087165739}
   m_Layer: 0
-  m_Name: Enemy_zombie_correct_animation
+  m_Name: Enemy_start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
