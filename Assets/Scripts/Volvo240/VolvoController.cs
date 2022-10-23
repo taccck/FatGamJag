@@ -70,7 +70,6 @@ public class VolvoController : MonoBehaviour
     private void UpdateVFX()
     {
         float playerSpeed = rb.velocity.magnitude;
-        //print(playerSpeed);
         trail.enabled = playerSpeed > velocityToTrailAt;
         foreach(ParticleSystem ps in driftEffect)
         {
@@ -78,7 +77,6 @@ public class VolvoController : MonoBehaviour
             Color newAlpha = main.startColor.color;
             newAlpha.a = drifting;
             main.startColor = newAlpha;
-            print(ps.main.startColor.color.a);
         }
     }
 
